@@ -1,157 +1,270 @@
-LIBRARY "xlive"
+LIBRARY xlive.dll
 EXPORTS
-  XNetStartup                                   @51
-  XNetCleanup                                   @52
-  XLiveInitialize                               @5000
-  XLiveInput                                    @5001
-  XLiveRender                                   @5002
-  XLiveUninitialize                             @5003
-  XOnlineStartup                                @5310
-  XOnlineCleanup                                @5311
-  XUserGetSigninState                           @5262
-  XNotifyGetNext                                @651
-  XShowSigninUI                                 @5260
-  _XWSAStartup@8                                = xlive_real.#1
-  _XGetOverlappedExtendedError@4                = xlive_real.#1082
-  _XGetOverlappedResult@12                      = xlive_real.#1083
-  _XSocketBind@12                               = xlive_real.#11
-  _XSocketConnect@12                            = xlive_real.#12
-  _XSocketListen@8                              = xlive_real.#13
-  _XSocketAccept@12                             = xlive_real.#14
-  _XSocketSelect@20                             = xlive_real.#15
-  _XSocketRecv@16                               = xlive_real.#18
-  _XWSACleanup@0                                = xlive_real.#2
-  _XSocketRecvFrom@24                           = xlive_real.#20
-  _XSocketSend@16                               = xlive_real.#22
-  _XSocketSendTo@24                             = xlive_real.#24
-  _XSocketInet_Addr@4                           = xlive_real.#26
-  _XWSAGetLastError@0                           = xlive_real.#27
-  _XCreateSocket@12                             = xlive_real.#3
-  _XSocketHTONL@4                               = xlive_real.#37
-  _XSocketNTOHS@4                               = xlive_real.#38
-  _XSocketNTOHL@4                               = xlive_real.#39
-  _XSocketHTONS@4                               = xlive_real.#40
-  _XSockeClose@4                                = xlive_real.#4
-  _XCustomGetLastActionPress@12                 = xlive_real.#473
-  _XSocketShutdown@8                            = xlive_real.#5
-  _XLiveInitializeEx@8                          = xlive_real.#5297
-  _XLiveOnCreateDevice@8                        = xlive_real.#5005
-  _XLiveOnDestroyDevice@0                       = xlive_real.#5006
-  _XLiveOnResetDevice@4                         = xlive_real.#5007
-  _XHVCreateEngine@12                           = xlive_real.#5008
-  _XLivePBufferAllocate@8                       = xlive_real.#5016
-  _XLivePBufferFree@4                           = xlive_real.#5017
-  _XLivePBufferGetByte@12                       = xlive_real.#5018
-  _XLivePBufferSetByte@12                       = xlive_real.#5019
-  _XLivePBufferGetDWORD@12                      = xlive_real.#5020
-  _XLivePBufferSetDWORD@12                      = xlive_real.#5021
-  _XLiveGetUpdateInformation@4                  = xlive_real.#5022
-  _XLiveUpdateSystem@4                          = xlive_real.#5024
-  _XLiveSetSponsorToken@8                       = xlive_real.#5026
-  _XLivePreTranslateMessage@4                   = xlive_real.#5030
-  _XLiveSetDebugLevel@8                         = xlive_real.#5031
-  _XLiveProtectData@20                          = xlive_real.#5034
-  _XLiveUnprotectData@20                        = xlive_real.#5035
-  _XLiveCreateProtectedDataContext@8            = xlive_real.#5036
-  _XLiveQueryProtectedDataInformation@8         = xlive_real.#5037
-  _XLiveCloseProtectedDataContext@4             = xlive_real.#5038
-  _XShowMessagesUI@4                            = xlive_real.#5206
-  _XShowGameInviteUI@16                         = xlive_real.#5208
-  _XShowMessageComposeUI@16                     = xlive_real.#5209
-  _XShowFriendRequestUI@12                      = xlive_real.#5210
-  _XShowPlayerReviewUI@12                       = xlive_real.#5214
-  _XShowGuideUI@4                               = xlive_real.#5215
-  _XShowKeyboardUI@32                           = xlive_real.#5216
-  _XCloseHandle@4                               = xlive_real.#5251
-  _XShowGamerCardUI@12                          = xlive_real.#5252
-  _XCancelOverlapped@4                          = xlive_real.#5254
-  _XEnumerate@20                                = xlive_real.#5256
-  _XLiveSignin@16                               = xlive_real.#5259
-  _XUserGetXUID@8                               = xlive_real.#5261
-  _XUserGetName@12                              = xlive_real.#5263
-  _XUserAreUsersFriends@20                      = xlive_real.#5264
-  _XUserCheckPrivilege@12                       = xlive_real.#5265
-  _XUserGetSigninInfo@12                        = xlive_real.#5267
-  _XNotifyCreateListener@8                      = xlive_real.#5270
-  _XShowPlayersUI@4                             = xlive_real.#5271
-  _XUserReadGamerpictureByKey@24                = xlive_real.#5273
-  _XShowFriendsUI@4                             = xlive_real.#5275
-  _XUserSetProperty@16                          = xlive_real.#5276
-  _XUserSetContext@12                           = xlive_real.#5277
-  _XUserWriteAchievements@12                    = xlive_real.#5278
-  _XUserCreateAchievementEnumerator@36          = xlive_real.#5280
-  _XUserReadStats@32                            = xlive_real.#5281
-  _XUserCreateStatsEnumeratorByRank@28          = xlive_real.#5284
-  _XUserCreateStatsEnumeratorByRating@32        = xlive_real.#5285
-  _XUserCreateStatsEnumeratorByXuid@32          = xlive_real.#5286
-  _XUserSetContextEx@16                         = xlive_real.#5292
-  _XUserSetPropertyEx@20                        = xlive_real.#5293
-  _XLivePBufferGetByteArray@16                  = xlive_real.#5294
-  _XLivePBufferSetByteArray@16                  = xlive_real.#5295
-  _XNetRandom@8                                 = xlive_real.#53
-  _XSessionCreate@32                            = xlive_real.#5300
-  _XStringVerify@28                             = xlive_real.#5303
-  _XStorageUploadFromMemory@20                  = xlive_real.#5305
-  _XStorageEnumerate@28                         = xlive_real.#5306
-  _XFriendsCreateEnumerator@20                  = xlive_real.#5312
-  _XUserMuteListQuery@16                        = xlive_real.#5314
-  _XInviteGetAcceptedInfo@8                     = xlive_real.#5315
-  _XInviteSend@20                               = xlive_real.#5316
-  _XSessionWriteStats@24                        = xlive_real.#5317
-  _XSessionStart@12                             = xlive_real.#5318
-  _XSessionSearchEx@44                          = xlive_real.#5319
-  _XSessionSearchByID@24                        = xlive_real.#5320
-  _XSessionSearch@40                            = xlive_real.#5321
-  _XSessionModify@20                            = xlive_real.#5322
-  _XSessionMigrateHost@16                       = xlive_real.#5323
-  _XOnlineGetNatType@0                          = xlive_real.#5324
-  _XSessionLeaveLocal@16                        = xlive_real.#5325
-  _XSessionJoinRemote@20                        = xlive_real.#5326
-  _XSessionJoinLocal@20                         = xlive_real.#5327
-  _XSessionGetDetails@16                        = xlive_real.#5328
-  _XSessionFlushStats@8                         = xlive_real.#5329
-  _XSessionDelete@8                             = xlive_real.#5330
-  _XUserReadProfileSettings@28                  = xlive_real.#5331
-  _XSessionEnd@8                                = xlive_real.#5332
-  _XSessionArbitrationRegister@28               = xlive_real.#5333
-  _XTitleServerCreateEnumerator@16              = xlive_real.#5335
-  _XSessionLeaveRemote@16                       = xlive_real.#5336
-  _XUserWriteProfileSettings@16                 = xlive_real.#5337
-  _XUserReadProfileSettingsByXuid@36            = xlive_real.#5339
-  _XSessionModifySkill@16                       = xlive_real.#5342
-  _XLiveCalculateSkill@20                       = xlive_real.#5343
-  _XStorageBuildServerPath@28                   = xlive_real.#5344
-  _XStorageDownloadToMemory@28                  = xlive_real.#5345
-  _XLiveProtectedCreateFile@36                  = xlive_real.#5348
-  _XLiveProtectedVerifyFile@12                  = xlive_real.#5349
-  _XLiveContentCreateAccessHandle@28            = xlive_real.#5350
-  _XLiveContentUninstall@12                     = xlive_real.#5352
-  _XLiveContentGetPath@16                       = xlive_real.#5355
-  _XLiveContentCreateEnumerator@16              = xlive_real.#5360
-  _XLiveContentRetrieveOffersByDate@24          = xlive_real.#5361
-  _XShowMarketplaceUI@20                        = xlive_real.#5365
-  _xlive_5367@20                                = xlive_real.#5367
-  _xlive_5372@24                                = xlive_real.#5372
-  _XNetCreateKey@8                              = xlive_real.#54
-  _XNetRegisterKey@8                            = xlive_real.#55
-  _XNetUnregisterKey@4                          = xlive_real.#56
-  _XNetXnAddrToInAddr@12                        = xlive_real.#57
-  _XNetServerToInAddr@12                        = xlive_real.#58
-  _XSocketIOCTLSocket@12                        = xlive_real.#6
-  _XNetInAddrToXnAddr@12                        = xlive_real.#60
-  _XNetUnregisterInAddr@4                       = xlive_real.#63
-  _XNetConnect@4                                = xlive_real.#65
-  _XNotifyPositionUI@4                          = xlive_real.#652
-  _XNetGetConnectStatus@4                       = xlive_real.#66
-  _XNetDnsLookup@12                             = xlive_real.#67
-  _XNetDnsRelease@4                             = xlive_real.#68
-  _XNetQosListen@20                             = xlive_real.#69
-  _XSocketSetSockOpt@20                         = xlive_real.#7
-  _XNetQosLookup@48                             = xlive_real.#70
-  _XNetQosServiceLookup@12                      = xlive_real.#71
-  _XNetQosRelease@4                             = xlive_real.#72
-  _XNetGetTitleXnAddr@4                         = xlive_real.#73
-  _XNetGetEthernetLinkStatus@0                   = xlive_real.#75
-  _XNetGetOpt@12                                = xlive_real.#78
-  _XNetSetSystemLinkPort@4                      = xlive_real.#84
-  _XSocketGetSockName@12                        = xlive_real.#9
+  XWSAStartup @1
+  XWSACleanup @2
+  XCreateSocket @3
+  XSockeClose @4
+  XSocketShutdown @5
+  XSocketIOCTLSocket @6
+  XSocketSetSockOpt @7
+  XSocketGetSockName @9
+  XSocketBind @11
+  XSocketConnect @12
+  XSocketListen @13
+  XSocketAccept @14
+  XSocketSelect @15
+  XSocketRecv @18
+  XSocketRecvFrom @20
+  XSocketSend @22
+  XSocketSendTo @24
+  XSocketInet_Addr @26
+  XWSAGetLastError @27
+  XSocketHTONL @37
+  XSocketNTOHS @38
+  XSocketNTOHL @39
+  XSocketHTONS @40
+  XNetStartup @51
+  XNetCleanup @52
+  XNetRandom @53
+  XNetCreateKey @54
+  XNetRegisterKey @55
+  XNetUnregisterKey @56
+  XNetXnAddrToInAddr @57
+  XNetServerToInAddr @58
+  XNetInAddrToXnAddr @60
+  XNetUnregisterInAddr @63
+  XNetConnect @65
+  XNetGetConnectStatus @66
+  XNetDnsLookup @67
+  XNetDnsRelease @68
+  XNetQosListen @69
+  XNetQosLookup @70
+  XNetQosServiceLookup @71
+  XNetQosRelease @72
+  XNetGetTitleXnAddr @73
+  XNetGetEthernetLinkStatus @75
+  XNetGetOpt @78
+  XNetSetSystemLinkPort @84
+  XCustomGetLastActionPress @473
+  XNotifyGetNext @651
+  XNotifyPositionUI @652
+  XGetOverlappedExtendedError @1082
+  XGetOverlappedResult @1083
+  XLiveInitialize @5000
+  XLiveInput @5001
+  XLiveRender @5002
+  XLiveUninitialize @5003
+  XLiveOnCreateDevice @5005
+  XLiveOnDestroyDevice @5006
+  XLiveOnResetDevice @5007
+  XHVCreateEngine @5008
+  XLivePBufferAllocate @5016
+  XLivePBufferFree @5017
+  XLivePBufferGetByte @5018
+  XLivePBufferSetByte @5019
+  XLivePBufferGetDWORD @5020
+  XLivePBufferSetDWORD @5021
+  XLiveGetUpdateInformation @5022
+  XLiveUpdateSystem @5024
+  XLiveSetSponsorToken @5026
+  XLivePreTranslateMessage @5030
+  XLiveSetDebugLevel @5031
+  XLiveProtectData @5034
+  XLiveUnprotectData @5035
+  XLiveCreateProtectedDataContext @5036
+  XLiveQueryProtectedDataInformation @5037
+  XLiveCloseProtectedDataContext @5038
+  XShowMessagesUI @5206
+  XShowGameInviteUI @5208
+  XShowMessageComposeUI @5209
+  XShowFriendRequestUI @5210
+  XShowPlayerReviewUI @5214
+  XShowGuideUI @5215
+  XShowKeyboardUI @5216
+  XCloseHandle @5251
+  XShowGamerCardUI @5252
+  XCancelOverlapped @5254
+  XEnumerate @5256
+  XLiveSignin @5259
+  XShowSigninUI @5260
+  XUserGetXUID @5261
+  XUserGetSigninState @5262
+  XUserGetName @5263
+  XUserAreUsersFriends @5264
+  XUserCheckPrivilege @5265
+  XUserGetSigninInfo @5267
+  XNotifyCreateListener @5270
+  XShowPlayersUI @5271
+  XUserReadGamerpictureByKey @5273
+  XShowFriendsUI @5275
+  XUserSetProperty @5276
+  XUserSetContext @5277
+  XUserWriteAchievements @5278
+  XUserCreateAchievementEnumerator @5280
+  XUserReadStats @5281
+  XUserCreateStatsEnumeratorByRank @5284
+  XUserCreateStatsEnumeratorByRating @5285
+  XUserCreateStatsEnumeratorByXuid @5286
+  XUserSetContextEx @5292
+  XUserSetPropertyEx @5293
+  XLivePBufferGetByteArray @5294
+  XLivePBufferSetByteArray @5295
+  XLiveInitializeEx @5297
+  XSessionCreate @5300
+  XStringVerify @5303
+  XStorageUploadFromMemory @5305
+  XStorageEnumerate @5306
+  XOnlineStartup @5310
+  XOnlineCleanup @5311
+  XFriendsCreateEnumerator @5312
+  XUserMuteListQuery @5314
+  XInviteGetAcceptedInfo @5315
+  XInviteSend @5316
+  XSessionWriteStats @5317
+  XSessionStart @5318
+  XSessionSearchEx @5319
+  XSessionSearchByID @5320
+  XSessionSearch @5321
+  XSessionModify @5322
+  XSessionMigrateHost @5323
+  XOnlineGetNatType @5324
+  XSessionLeaveLocal @5325
+  XSessionJoinRemote @5326
+  XSessionJoinLocal @5327
+  XSessionGetDetails @5328
+  XSessionFlushStats @5329
+  XSessionDelete @5330
+  XUserReadProfileSettings @5331
+  XSessionEnd @5332
+  XSessionArbitrationRegister @5333
+  XTitleServerCreateEnumerator @5335
+  XSessionLeaveRemote @5336
+  XUserWriteProfileSettings @5337
+  XUserReadProfileSettingsByXuid @5339
+  XSessionModifySkill @5342
+  XLiveCalculateSkill @5343
+  XStorageBuildServerPath @5344
+  XStorageDownloadToMemory @5345
+  XLiveProtectedCreateFile @5348
+  XLiveProtectedVerifyFile @5349
+  XLiveContentCreateAccessHandle @5350
+  XLiveContentUninstall @5352
+  XLiveContentGetPath @5355
+  XLiveContentCreateEnumerator @5360
+  XLiveContentRetrieveOffersByDate @5361
+  XShowMarketplaceUI @5365
+  xlive_5367 @5367
+  xlive_5372 @5372
+  XLiveStub5887 @5887
+XLiveStub5888 @5888
+XLiveStub5889 @5889
+XLiveStub5890 @5890
+XLiveStub5891 @5891
+XLiveStub5892 @5892
+XLiveStub5893 @5893
+XLiveStub5894 @5894
+XLiveStub5895 @5895
+XLiveStub5896 @5896
+XLiveStub5897 @5897
+XLiveStub5898 @5898
+XLiveStub5899 @5899
+XLiveStub5900 @5900
+XLiveStub5901 @5901
+XLiveStub5902 @5902
+XLiveStub5903 @5903
+XLiveStub5904 @5904
+XLiveStub5905 @5905
+XLiveStub5906 @5906
+XLiveStub5907 @5907
+XLiveStub5908 @5908
+XLiveStub5909 @5909
+XLiveStub5910 @5910
+XLiveStub5911 @5911
+XLiveStub5912 @5912
+XLiveStub5913 @5913
+XLiveStub5914 @5914
+XLiveStub5915 @5915
+XLiveStub5916 @5916
+XLiveStub5917 @5917
+XLiveStub5918 @5918
+XLiveStub5919 @5919
+XLiveStub5920 @5920
+XLiveStub5921 @5921
+XLiveStub5922 @5922
+XLiveStub5923 @5923
+XLiveStub5924 @5924
+XLiveStub5925 @5925
+XLiveStub5926 @5926
+XLiveStub5927 @5927
+XLiveStub5928 @5928
+XLiveStub5929 @5929
+XLiveStub5930 @5930
+XLiveStub5931 @5931
+XLiveStub5932 @5932
+XLiveStub5933 @5933
+XLiveStub5934 @5934
+XLiveStub5935 @5935
+XLiveStub5936 @5936
+XLiveStub5937 @5937
+XLiveStub5938 @5938
+XLiveStub5939 @5939
+XLiveStub5940 @5940
+XLiveStub5941 @5941
+XLiveStub5942 @5942
+XLiveStub5943 @5943
+XLiveStub5944 @5944
+XLiveStub5945 @5945
+XLiveStub5946 @5946
+XLiveStub5947 @5947
+XLiveStub5948 @5948
+XLiveStub5949 @5949
+XLiveStub5950 @5950
+XLiveStub5951 @5951
+XLiveStub5952 @5952
+XLiveStub5953 @5953
+XLiveStub5954 @5954
+XLiveStub5955 @5955
+XLiveStub5956 @5956
+XLiveStub5957 @5957
+XLiveStub5958 @5958
+XLiveStub5959 @5959
+XLiveStub5960 @5960
+XLiveStub5961 @5961
+XLiveStub5962 @5962
+XLiveStub5963 @5963
+XLiveStub5964 @5964
+XLiveStub5965 @5965
+XLiveStub5966 @5966
+XLiveStub5967 @5967
+XLiveStub5968 @5968
+XLiveStub5969 @5969
+XLiveStub5970 @5970
+XLiveStub5971 @5971
+XLiveStub5972 @5972
+XLiveStub5973 @5973
+XLiveStub5974 @5974
+XLiveStub5975 @5975
+XLiveStub5976 @5976
+XLiveStub5977 @5977
+XLiveStub5978 @5978
+XLiveStub5979 @5979
+XLiveStub5980 @5980
+XLiveStub5981 @5981
+XLiveStub5982 @5982
+XLiveStub5983 @5983
+XLiveStub5984 @5984
+XLiveStub5985 @5985
+XLiveStub5986 @5986
+XLiveStub5987 @5987
+XLiveStub5988 @5988
+XLiveStub5989 @5989
+XLiveStub5990 @5990
+XLiveStub5991 @5991
+XLiveStub5992 @5992
+XLiveStub5993 @5993
+XLiveStub5994 @5994
+XLiveStub5995 @5995
+XLiveStub5996 @5996
+XLiveStub5997 @5997
+XLiveStub5998 @5998
+XLiveStub5999 @5999
