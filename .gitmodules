@@ -1,0 +1,3 @@
+[submodule "xlivelessness"]
+	path = xlivelessness
+	url = https://github.com/shayaantx/xlivelessness.git

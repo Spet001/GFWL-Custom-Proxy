@@ -3,6 +3,11 @@
 #include <windows.h>
 #include <map>
 #include <string>
+#include <stdio.h>
+#include <stdexcept>
+#include <mutex>
+#include <psapi.h>
+
 
 static HMODULE g_hRealXlive = NULL;
 
@@ -63,9 +68,13 @@ extern "C" __declspec(dllexport) int __stdcall XOnlineStartup() {
         return ((int(__stdcall*)())func)(); \
     }
 
-// Funções que aceitam parâmetros diferentes devem ser explicitamente implementadas ou adaptadas
-
-// Exemplo: Forward simples (adicione mais conforme necessário)
+// Macros para facilitar criação dos exports por ordinal
+#define FORWARD_FUNC_ORDINAL(ord) \
+    extern "C" __declspec(dllexport) int __stdcall Ord##ord() { \
+        FARPROC func = GetRealProcAddressOrdinal(ord); \
+        if (!func) return 0; \
+        return ((int(__stdcall*)())func)(); \
+    }
 FORWARD_FUNC(XWSAStartup)
 FORWARD_FUNC(XWSACleanup)
 FORWARD_FUNC(XCreateSocket)
@@ -354,3 +363,84 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     }
     return TRUE;
 }
+static HMODULE g_realXlive = nullptr;
+static std::once_flag xlive_load_flag;
+
+// Thread-safe lazy loader
+void EnsureRealXliveLoaded() {
+    std::call_once(xlive_load_flag, [] {
+        g_realXlive = LoadLibraryA("xlive_real.dll");
+    });
+}
+
+FARPROC GetRealProc(const char* name) {
+    EnsureRealXliveLoaded();
+    if (!g_realXlive) return nullptr;
+    return GetProcAddress(g_realXlive, name);
+}
+
+void LogCall(const char* funcName) {
+    FILE* f = fopen("xlive_proxy.log", "a");
+    if (f) {
+        fprintf(f, "[%s] called\n", funcName);
+        fclose(f);
+    }
+}
+
+// Detecta SecuROM por módulo carregado
+bool IsSecuROMActive() {
+    HMODULE hMods[1024];
+    HANDLE hProcess = GetCurrentProcess();
+    DWORD cbNeeded;
+    if (EnumProcessModules(hProcess, hMods, sizeof(hMods), &cbNeeded)) {
+        for (unsigned int i = 0; i < (cbNeeded / sizeof(HMODULE)); i++) {
+            char szModName[MAX_PATH];
+            if (GetModuleFileNameA(hMods[i], szModName, sizeof(szModName) / sizeof(char))) {
+                // Procura por módulos conhecidos do SecuROM
+                if (strstr(szModName, "secdrv") || strstr(szModName, "SecuROM") || strstr(szModName, "securom")) {
+                    LogCall("SecuROM detected!");
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+// Tenta desativar ou enganar o SecuROM (decoy)
+void TrySecuROMDecoy() {
+    //  (dummy)
+    LogCall("TrySecuROMDecoy: Attempting decoy/hook");
+    // TODO PATCHER: implementar hooks ou patches específicos para enganar o SecuROM
+}
+
+
+extern "C" __declspec(dllexport) int __stdcall XLiveInitialize(void* args) {
+    LogCall("XLiveInitialize");
+    bool securomActive = IsSecuROMActive();
+    if (securomActive) {
+        TrySecuROMDecoy();
+        // Decoy pro SEcuROM: retorna sucesso falso - evitar falha
+        LogCall("XLiveInitialize: Returning decoy response for SecuROM");
+        return ERROR_SUCCESS;
+    }
+    __try {
+        if (!args) {
+            LogCall("XLiveInitialize: args == nullptr");
+            return ERROR_INVALID_PARAMETER;
+        }
+        auto realProc = GetRealProc("XLiveInitialize");
+        if (realProc) {
+            try {
+                return ((int (__stdcall*)(void*))realProc)(args);
+            } catch (...) {
+                LogCall("XLiveInitialize: Exception in real xlive");
+                return ERROR_GEN_FAILURE;
+            }
+        }
+        return ERROR_SUCCESS;
+    }
+    __except(EXCEPTION_EXECUTE_HANDLER) {
+        LogCall("XLiveInitialize: Structured Exception Caught");
+        return ERROR_GEN_FAILURE;
+    }
